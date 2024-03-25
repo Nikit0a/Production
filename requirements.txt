@@ -3,3 +3,6 @@
 #you might need
 
 flask>=1.0.2
+rpi_ws281x
+adafruit-circuitpython-neopixel
+adafruit-blinka
