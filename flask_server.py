@@ -18,7 +18,8 @@ def run_led_script_async(script_name):
     global current_process
     try:
         if current_process:
-            # Trying to interrupt the current process if it exists            current_process.terminate()
+            # Trying to interrupt the current process if it exists
+            current_process.terminate()
             current_process.wait(timeout=1)  # We give the process time to complete
     except subprocess.TimeoutExpired:
         print(f"Process {script_name} didn't finish on time.")
