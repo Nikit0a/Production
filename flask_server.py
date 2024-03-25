@@ -19,18 +19,18 @@ def run_led_script_async(script_name):
     try:
         if current_process:
             # Trying to interrupt the current process if it exists            current_process.terminate()
-            current_process.wait(timeout=1)  # Даем процессу время на завершение
+            current_process.wait(timeout=1)  # We give the process time to complete
     except subprocess.TimeoutExpired:
-        print(f"Процесс {script_name} не завершился вовремя.")
+        print(f"Process {script_name} didn't finish on time.")
     except Exception as e:
-        print(f"Ошибка при завершении процесса: {e}")
+        print(f"Error at the end of the process: {e}")
     finally:
         script_path = os.path.join(LED_SCRIPTS_PATH, script_name)
-        # Запускаем новый процесс
+        # Starting a new process
         try:
             current_process = Popen(["python3", script_path])
         except Exception as e:
-            print(f"Ошибка при запуске скрипта {script_name}: {e}")
+            print(f"Error when running the script {script_name}: {e}")
 
 
         
