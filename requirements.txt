@@ -1,6 +1,3 @@
-#sudo apt-get update
-#sudo apt-get install avahi-daemon
-#you might need
 
 flask>=1.0.2
 rpi_ws281x
