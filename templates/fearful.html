@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/static/media/cast.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fearful</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden; /* Banning scrolling */
+    }
+
+    #videoBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Fills the entire background of the video, keeping the proportions */
+      filter: blur(1.5px); /* Background blur */
+      z-index: -1; /* Putting the background behind the main content */
+    }
+
+    #musicControls {
+      text-align: center;
+      color: #fff; /* The color of the text on the background */
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    label, select {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 1px;
+    }
+
+    #goBackButton {
+      background-color:rgba(215, 113, 235, 0.466);
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      transition: background-color 0.5s ease; /* Added the transition property for a smooth transition of the background color */
+    }
+
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="goBackButton" onclick="goBack()">&#8592; </button>
+
+  <!-- Added a section with a background video -->
+  <video id="videoBackground" autoplay loop muted>
+    <source src="/static/media/Fearful_Blue_moonlit_night.webm" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="musicControls">
+    <label for="musicInput">Choose Music File</label>
+    <input type="file" id="musicInput" accept="audio/*">
+    
+    <!-- Added the select element for the list of songs -->
+    
+    <select id="songSelect" onchange="loadSelectedSong()">
+      <option value="">Select a song...</option>
+      <option value="/static/media/music/Fearful/1stfearful.mp3">Song 1</option>
+      <option value="/static/media/music/Fearful/2ndfearful.mp3">Song 2</option>
+      <option value="/static/media/music/Fearful/3rdfearful.mp3">Song 3</option>
+      <!-- Add additional songs as needed -->
+    </select>
+
+    <audio id="musicPlayer" controls>
+    </audio>
+
+    <div>
+      <button onclick="playSelectedMusic()">Play</button>
+      <button onclick="togglePause()">Pause/Resume</button>
+    </div>
+  </div>
+
+  <script>
+    var audioPlayer = document.getElementById('musicPlayer');
+    var musicInput = document.getElementById('musicInput');
+    var songSelect = document.getElementById('songSelect');
+    var isPaused = false;
+    audioPlayer.onended = function() {
+    playNextSong();
+};
+    
+
+    function goBack() {
+    document.body.style.backgroundColor = "#fff";
+    setTimeout(function () {
+      window.location.href = "/"; // for flask server change to "/"
+    }, 500);
+  }
+
+
+    function loadSelectedSong() {
+      // Check if a song is selected
+      if (songSelect.value) {
+        // Set the source to the selected song and play
+        audioPlayer.src = songSelect.value;
+        audioPlayer.play();
+        isPaused = false;
+      }
+    }
+
+    function playSelectedMusic() {
+      // Check if a file is selected
+      if (musicInput.files.length > 0) {
+        // Set the source to the selected file and play
+        audioPlayer.src = URL.createObjectURL(musicInput.files[0]);
+        audioPlayer.play();
+        isPaused = false;
+      }
+    }
+
+    function playNextSong() {
+    // Find the index of the currently playing song
+    var currentIndex = songSelect.selectedIndex;
+
+    // Check if there is a next song in the list
+    if (currentIndex < songSelect.options.length - 1) {
+        // Set to the next song
+        songSelect.selectedIndex = currentIndex + 1;
+        // Load and play the next song
+        loadSelectedSong();
+    } else {
+        // If it's the last song, either stop or loop back to the first song
+        // To loop back to the first song:
+        // songSelect.selectedIndex = 0;
+        // loadSelectedSong();
+    }
+}
+
+
+    function goBack() {
+    document.body.style.backgroundColor = "#fff";
+    setTimeout(function () {
+      window.location.href = "/"; // for flask server change to "/"
+    }, 500);
+  }
+
+
+    function loadSelectedSong() {
+      // Check if a song is selected
+      if (songSelect.value) {
+        // Set the source to the selected song and play
+        audioPlayer.src = songSelect.value;
+        audioPlayer.play();
+        isPaused = false;
+      }
+    }
+
+    function playSelectedMusic() {
+      // Check if a file is selected
+      if (musicInput.files.length > 0) {
+        // Set the source to the selected file and play
+        audioPlayer.src = URL.createObjectURL(musicInput.files[0]);
+        audioPlayer.play();
+        isPaused = false;
+      }
+    }
+
+    function togglePause() {
+      if (!audioPlayer.paused) {
+        audioPlayer.pause();
+        isPaused = true;
+      } else if (isPaused) {
+        audioPlayer.play();
+        isPaused = false;
+      }
+    }
+  </script>
+
+</body>
+</html>

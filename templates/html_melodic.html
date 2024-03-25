@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/static/media/cast.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Your Emotional State</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url(/static/media/fiol2.jpeg); /* Possible to change the background image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: background-color 0.5s ease; /* Smooth transition of background color */
+    }
+
+    #container {
+      background-color: rgba(216, 197, 225, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transform: scale(1.3); /* Increase in size by 130%  */
+      transition: background-color 0.5s ease; /* Smooth transition of background color */
+    }
+
+    h1 {
+      color: #6a007c;
+    }
+
+    select, input {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #6a007c;
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4d005c;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h1>How do you feel?</h1>
+  
+    <select id="emotions">
+      <option value="happy">Happy</option>
+      <option value="sad">Sad</option>
+      <option value="excited">Excited</option>
+      <option value="calm">Calm</option>
+      <option value="angry">Angry</option> <!-- make another page for (calm2 )-->
+      <option value="nervous">Nervous</option> <!-- thid will be redirected to the calm file  --> 
+      <option value="fearful">Fearful</option>
+      <option value="love">Love</option>
+    </select>
+  
+
+    <button onclick="showSelectedEmotion()">Confirm</button>
+  </div>
+  
+
+<script>
+  function showSelectedEmotion() {
+  var selectedEmotion = document.getElementById('emotions').value;
+
+    // Redirecting to the second page for a "Happy" emotion
+    if (selectedEmotion === 'happy') {
+      document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+        document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+        setTimeout(function () {
+          window.location.href = '/happy'; // for flask server change to /happy and for local change to html_melodic.html
+        }, 500);
+      }
+
+    if (selectedEmotion === 'sad') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/sad'; // for flask server change to /sad and for local change to sad.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'angry') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/angry'; // for flask server change to /angry and for local change to angry.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'love') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/love'; // for flask server change to /love and for local change to love.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'nervous') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/nervous'; // for flask server change to /nervous and for local change to nervous.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'excited') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/excited'; // for flask server change to /excited and for local change to excited.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'calm') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/calm'; // for flask server change to /calm and for local change to calm.html
+      }, 500);    
+    }
+
+    if (selectedEmotion === 'fearful') {
+    document.body.style.backgroundColor = "#fff7c0"; /* Any color you want to set */
+      document.getElementById('container').style.backgroundColor = "rgba(255, 255, 255, 0.8)"; /* Any color you want to set */
+      setTimeout(function () {
+        window.location.href = '/fearful'; // for flask server change to /fearful and for local change to fearful.html
+      }, 500);    
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
